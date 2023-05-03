@@ -9,26 +9,30 @@
 \usepackage{scuthesis}
 \input{chapters/basic}
 
+\def\scuthesis{\textsc{ScuThesis}}
+
+% 在导言区引用宏包
+\usepackage{gbt7714}   % 国标参考文献
+\usepackage{metalogo}
+
 \begin{document}
 \frontmatter
 \include{chapters/prologue}
 
 \mainmatter
 \include{chapters/chap01}
-\include{chapters/chap02}
 
 \backmatter
 % \listoffigures % 图清单
 % \listoftables  % 表清单
 
 % 参考文献
-\bibliographystyle{scuthesis}
+\nocite{*} % 列出未引用的参考文献，如果不需要，删除即可
+\bibliographystyle{gbt7714-numerical}
 \bibliography{refs}
 % 致谢
 \include{chapters/epilogue}
 \begin{appendix}
   \input{chapters/appendix01}
-  \input{chapters/appendix02}
-  \input{chapters/appendix03}
 \end{appendix}
 \end{document}

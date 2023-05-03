@@ -1,1 +1,0 @@
-../scuthesis.bst

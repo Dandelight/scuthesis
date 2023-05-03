@@ -111,7 +111,27 @@
 \renewcommand\thesubfigure{(\alph{subfigure})}
 \renewcommand\thesubtable{(\alph{subtable})}
 
+% 2.3标题排式
+% 标题可分为章（一级）、节（二级）、小节（三级）等。最小一级标题的字级应与正文文字的字级相同。
+% 2.3.1 标题的字级、字体（如标题级别较多，可在3号字与小4号之间用技术处理的方法区别，如加黑或不加黑）
+% 一级标题用小3号字，字体选用标宋黑体；
+% 二级标题用4号字，字体选用4号宋体加粗（或黑体）；
+% 三级标题用小4号字，字体选用楷体；
+% 最末一级标题用小4号字，字体选用宋体加黑（或黑体）。
+% 2.3.2 标题占行
+% 一级标题文字上下各空一行；居中排；
+% 二级标题的上面空一行，居中排；
+% 三级标题及其以下标题上下不空行，居左排。
+% 在两级标题连排的情况下，可省1～2行。
+% 2.3.3 标题长度与转行
+% 标题文字较多时，可按密排标题方式处理，即字与字之间不加间空。标题文字少时，可按疏排标题方式处理，即在字与字之间加间空。间空一般是两字间空两字，三字间空一字，四字间空半字，五字及五字以下不间空。
+% 标题文字长度占两行或两行以上的，可按多行标题方式处理，即应转行。标题转行：在标题文字的行长超过主体文字4/5行长的情况下，必须转行，转行标题文字居中排。
+% 标题转行不能割裂词义，如人名、地名、国名等，专有名词不能断开，虚词、术语、符号等不能转为下一行的第一字。
+% 在有副标题的情况下，应注意主题与副标题的关系与比例。
+
+
 \ctexset{%
+  % 一级标题小三号黑体
   chapter={%
     pagestyle={fancy},
     beforeskip={-15pt},
@@ -119,17 +139,19 @@
     afterskip={10pt},
     name={,},
     number=\arabic{chapter},
-    nameformat={\zihao{3}\bf\songti},
-    titleformat={\zihao{3}\bf\songti},
+    nameformat={\zihao{-3}\heiti\centering},
+    titleformat={\zihao{-3}\heiti\centering},
   },
+  % 二级标题四号宋体加粗
   section={%
-    beforeskip={3.5ex \@plus 1ex \@minus .2ex},
-    afterskip={2.3ex \@plus.2ex},
-    format={\zihao{4}\bf\heiti},
+    beforeskip={0.5ex \@plus 1ex \@minus .2ex},
+    afterskip={1.3ex \@plus.2ex},
+    format={\zihao{4}\bf\songti\centering},
   },
+  % 三级标题小四号楷体
   subsection={%
-    beforeskip={3.25ex \@plus 1ex \@minus .2ex},
-    afterskip={1ex \@plus .2ex},
+    beforeskip={2.25ex \@plus 1ex \@minus .2ex},
+    afterskip={0ex \@plus .2ex},
     format={\zihao{-4}\kaishu},
   },
   subsubsection={%
@@ -150,6 +172,8 @@
 
 
 % Setup appendix format
+% 2.11附录排式
+% 附录应标明序号，各附录依次编排。如“附录1”排在版心左上角。“附录”用四号黑体字。附录文字的字级用5号字。
 \let\scu@appendix\appendix
 \renewenvironment{appendix}{%
   \let\title\scu@appendix@title
@@ -169,15 +193,24 @@
 % setup acknoledge format
 \newenvironment{ack}{\chapter*{\hspace*{\fill}\scu@acknowledgement@pre\hspace*{\fill}}}{\addcontentsline{toc}{chapter}{\scu@acknowledgement@pre}\clearpage}
 
-% toc
+% 2.7目录排式
+% 目录中的标题不能超过三级。
+% 一级标题用小3～4号字；
+% 二级标题用4～小4号字；
+% 三级标题用小4号字。
+% 标题字体按由重到轻的原则选择。如一级标题用4黑，二级用4号字，三级用小4号字。标题文字居左，页码居右，之间用连续三连点连接。标题需转行的，转行后的标题文字应缩进一字处理。
+
+% 一级标题用小3号黑体；
+% 二级标题用4号宋体；
+% 三级标题用小4号宋体。
 \RequirePackage{titletoc}
-\titlecontents{chapter}[0pt]{\filright\zihao{-3}\bf\songti}
+\titlecontents{chapter}[0pt]{\filright\zihao{-3}\bf\heiti}
               {\contentspush{\thecontentslabel\ }}
               {}{\titlerule*[6pt]{$\cdot$}\contentspage}
 \titlecontents{section}[1em]{\addvspace{-3pt}\filright\zihao{4}\songti}
               {\contentspush{\thecontentslabel\ }}
               {}{\titlerule*[6pt]{$\cdot$}\contentspage}
-\titlecontents{subsection}[2em]{\addvspace{-3pt}\filright\zihao{-4}\kaishu}
+\titlecontents{subsection}[2em]{\addvspace{-3pt}\filright\zihao{-4}\songti}
               {\contentspush{\thecontentslabel\ }}
               {}{\titlerule*[6pt]{$\cdot$}\contentspage}
 
@@ -234,7 +267,7 @@
   \begin{center}
   \vspace*{.1cm}
   \includegraphics[height=1.6cm]{./images/scu}\par\vskip1.35cm % Logo
-  {\zhsong\zihao{1}\scu@bachelor@report@title}\par\vskip1.2cm      % Title
+  {\songti\zihao{1}\bf\scu@bachelor@report@title}\par\vskip1.2cm      % Title
   \includegraphics[height=3.5cm]{./images/logo}\par\vskip0.4cm % Badge
   \setlength\scu@titlelength{\widthof{\bf\kaishu\scu@ctitle@value}}
   \newcolumntype{A}{>{\songti}r<{}}
@@ -249,7 +282,7 @@
     \scu@cname@p  & \scu@underline[8cm]\scu@cname@value\\[1.16cm]
   \end{tabular}\\
   \begin{tabular}{ABAB}
-    \scu@sid@pre & \scu@underline[3cm]\scu@sid@value 
+    \scu@sid@pre & \scu@underline[3cm]\scu@sid@value
     & \scu@session@pre & \scu@underline[3cm]\scu@session@value\\[1.0cm]
   \end{tabular}\\
   \begin{tabular}{AB}
@@ -297,14 +330,15 @@
   \thispagestyle{abstract}
   \pdfbookmark[0]{摘要}{cabstract}
   \begin{center}
-  \vspace*{1.0cm}
+  \vspace*{1.0cm} % 标题距离页眉
   {\bf\songti\zihao{-2} \scu@ctitle@value}\par\vskip1.2cm
   {\kaishu\zihao{4} \scu@cmajor@value}\par\vskip.75cm
   {\kaishu\zihao{4} \scu@cname@pre\hskip.6cm  \scu@cname@value \hskip1cm \scu@csupervisor@pre\hskip.6cm  \scu@csupervisor@value}\par
-  \end{center}\par\vskip1.1cm
-  {\addtolength\leftskip{1.7cm}
-  \addtolength\rightskip{.9cm}
-  {\bf\kaishu\zihao{5} ［摘要］}\hskip.2cm{\kaishu\zihao{5}\scu@cabstract}\vskip1.3cm
+  \end{center}\par\vskip.6cm % 署名距离摘要正文
+  {\addtolength\leftskip{.2cm}
+  \addtolength\rightskip{.2cm}
+  {\bf\kaishu\zihao{5} ［摘要］}\hskip.2cm{\kaishu\zihao{5}\scu@cabstract}
+
   {\bf\kaishu\zihao{5} ［关键词］}\hskip.2cm{\kaishu\zihao{5}\scu@cabstract@key}
   \clearpage}
   % English Abstract
@@ -313,10 +347,11 @@
   \begin{center}
   \vspace*{.75cm}
   {\bf\zihao{-2} \scu@etitle@value}\par\vskip1.5cm
-  {\sf\zihao{4} \scu@emajor@value}\par\vskip.8cm
-  {\sf\zihao{4} \scu@ename@pre : \scu@ename@value \hskip1cm \scu@esupervisor@pre : \scu@esupervisor@value}\par
+  {\bf\zihao{4} \scu@emajor@value}\par\vskip.8cm
+  {\bf\zihao{4} \scu@ename@pre : \scu@ename@value \hskip1cm \scu@esupervisor@pre : \scu@esupervisor@value}\par
   \end{center}\par\vskip1.1cm
-  {\bf\zihao{5}[Abstract]}\hskip.2cm{\zihao{5}\scu@eabstract}\vskip1cm
+  {\bf\zihao{5}[Abstract]}\hskip.2cm{\zihao{5}\scu@eabstract}
+
   {\bf\zihao{5}[Key Words]}\hskip.2cm{\zihao{5}\scu@eabstract@key}\clearpage}
 
 \newcommand\scu@makeannouncement{%
@@ -341,11 +376,12 @@
   \fancyhf{}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0pt}
-  \fancyfoot{}\fancyfoot[RO,LE]{\zihao{-5} \thepage}
+  \fancyfoot{}
+  \fancyfoot[C]{\zihao{-5} \thepage}
 }
 \fancypagestyle{abstract}{%
   \fancyfoot{}
-  \fancyfoot[R]{\zihao{-5} \thepage}
+  \fancyfoot[C]{\zihao{-5} \thepage}
 }
 \fancypagestyle{toc}{%
   \fancyhf{}
@@ -354,9 +390,10 @@
 }
 \pagestyle{fancy}
 \fancyhead{} %clear all fields
-\fancyhead[L]{\zihao{5} \scu@report@name}
-\fancyhead[R]{\zihao{5} \scu@ctitle@value}
-\fancyfoot{}\fancyfoot[RO,LE]{\zihao{-5} \thepage}
+\fancyhead[L]{\color{gray} \zihao{5} \scu@report@name}
+\fancyhead[R]{\color{gray} \zihao{5} \scu@ctitle@value}
+\fancyfoot{}
+\fancyfoot[C]{\zihao{-5} \thepage}
 % Bib Style
 \setlength{\bibsep}{0ex}
 
